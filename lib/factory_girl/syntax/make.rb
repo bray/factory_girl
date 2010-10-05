@@ -15,7 +15,11 @@ module FactoryGirl
     #     end
     #   end
     #
+    #   # Returns a User instance that's not saved
     #   User.make(:name => 'Johnny')
+    #
+    #   # Returns a saved User instance
+    #   User.make!(:name => 'Johnny')
     #
     # This syntax was derived from Pete Yandell's machinist.
     module Make
@@ -28,6 +32,10 @@ module FactoryGirl
         module ClassMethods #:nodoc:
 
           def make(overrides = {})
+            FactoryGirl.factory_by_name(name.underscore).run(Proxy::Build, overrides)
+          end
+
+          def make!(overrides = {})
             FactoryGirl.factory_by_name(name.underscore).run(Proxy::Create, overrides)
           end
 

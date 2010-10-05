@@ -249,7 +249,11 @@ Users' tastes for syntax vary dramatically, but most users are looking for a com
     email { Sham.email }
   end
 
+  # Returns a User instance that's not saved
   User.make(:name => 'Johnny')
+
+  # Returns a saved User instance
+  User.make!(:name => 'Johnny')
 
 == More Information
 
