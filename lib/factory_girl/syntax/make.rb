@@ -13,7 +13,11 @@ class Factory
     #     factory.email 'billy@bob.example.com'
     #   end
     #
+    #   # Returns an initialized User instance
     #   User.make(:name => 'Johnny')
+    #
+    #   # Returns a saved User instance
+    #   User.make!(:name => 'Johnny')
     #
     # This syntax was derived from Pete Yandell's machinist.
     module Make
@@ -26,6 +30,10 @@ class Factory
         module ClassMethods #:nodoc:
 
           def make(overrides = {})
+            Factory.build(name.underscore, overrides)
+          end
+
+          def make!(overrides = {})
             Factory.create(name.underscore, overrides)
           end
 
