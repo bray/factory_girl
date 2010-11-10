@@ -15,6 +15,10 @@ describe "a factory using make syntax" do
     Factory.factories.clear
   end
 
+  it "should get its factory attributes" do
+    User.factory_attrs.should == {:first_name => 'Bill', :last_name => 'Nye', :email => 'science@guys.net'}
+  end
+
   describe "after making an instance" do
     before do
       @instance = User.make(:last_name => 'Rye')

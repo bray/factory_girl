@@ -37,8 +37,11 @@ class Factory
             Factory.create(name.underscore, overrides)
           end
 
-        end
+          def factory_attrs(overrides = {})
+            Factory.attributes_for(name.underscore, overrides)
+          end
 
+        end
       end
     end
   end
